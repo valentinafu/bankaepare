@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/test', function () {
+    $faculties = \App\Faculty::first();
+    return $faculties->degrees->first()->subjects->first()->exams;
+    //return view('test', compact('faculties'));
+});
