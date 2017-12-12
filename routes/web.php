@@ -11,12 +11,19 @@
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('home');
+})->name('home');
 
 Route::get('/test', function () {
     $faculties = \App\Faculty::first();
     return $faculties->degrees->first()->subjects->first()->exams;
     //return view('test', compact('faculties'));
 });
+
+Route::get('login', 'Auth\AuthController@redirectToProvider');
+Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');
+Route::post('logout', 'Auth\AuthController@logout');
