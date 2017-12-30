@@ -64,32 +64,12 @@
 
     <h3>Laravel - Image Gallery CRUD Example</h3>
 
-    <form action="{{ url('image-gallery') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
-
-
-        {!! csrf_field() !!}
-
+    <form action="{{ url('exams') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
+        {{ csrf_field() }}
 
         @if (count($errors) > 0)
 
-            <div class="alert alert-danger">
-
-                <strong>Whoops!</strong> There were some problems with your input.<br><br>
-
-                <ul>
-
-                    @foreach ($errors->all() as $error)
-
-                        <li>{{ $error }}</li>
-
-                    @endforeach
-
-                </ul>
-
-            </div>
-
         @endif
-
 
         @if ($message = Session::get('success'))
 
@@ -103,36 +83,25 @@
 
         @endif
 
-
         <div class="row">
 
-            <div class="col-md-5">
-
-                <strong>Title:</strong>
-
-                <input type="text" name="title" class="form-control" placeholder="Title">
-
+            <div class="form-group">
+                <label for="subject">Subject (Hardcoded for now)</label>
+                <input type="text" name="subject" class="form-control" placeholder="PHP and Mysql" value="1">
             </div>
 
-            <div class="col-md-5">
-
-                <strong>Image:</strong>
-
+            <div class="form-group">
+                <label for="image">Exam Image:</label>
                 <input type="file" name="image" class="form-control">
-
             </div>
 
-            <div class="col-md-2">
-
-                <br/>
-
+            <div class="form-group">
                 <button type="submit" class="btn btn-success">Upload</button>
+            </div>
 
             </div>
 
         </div>
-
-
     </form>
 
 
