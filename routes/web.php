@@ -27,3 +27,8 @@ Route::get('/test', function () {
 Route::get('login', 'Auth\AuthController@redirectToProvider');
 Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');
 Route::post('logout', 'Auth\AuthController@logout');
+Route::get('image-gallery', 'ImageGalleryController@index');
+
+Route::post('image-gallery', 'ImageGalleryController@upload');
+
+Route::delete('image-gallery/{id}', 'ImageGalleryController@destroy');
