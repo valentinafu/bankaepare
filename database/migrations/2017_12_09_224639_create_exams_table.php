@@ -17,7 +17,6 @@ class CreateExamsTable extends Migration
             $table->increments('id');
             $table->integer('user_id');
             $table->integer('subject_id');
-            $table->string('image_url');
             $table->timestamps();
         });
     }

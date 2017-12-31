@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Exam extends Model
 {
+    protected $table = 'exams';
+    protected $fillable = ['subject','user_id'];
+
     public function subject() {
         return $this->belongsTo(Subject::class);
     }
