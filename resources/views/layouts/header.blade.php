@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Banka e Parë</a>
+  <a class="navbar-brand" href="/">Banka e Parë</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarsExampleDefault">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Link</a>
@@ -32,16 +32,16 @@
       <ul class="nav navbar-nav navbar-right" style="margin-left: 12px;">
           <!-- Authentication Links -->
           @if (Auth::guest())
-              <li><a href="login">Login</a></li>
+              <li><a href="/login">Login</a></li>
           @else
               <img src="{{ auth()->user()->avatar }}" alt="Avatar" class="img-circle">
               <p style="color: #ffffff; margin: 12px; vertical-align: center">{{ Auth::user()->name }}</p>
-              <a href="logout" onclick="event.preventDefault();
+              <a href="/logout" onclick="event.preventDefault();
                  document.getElementById('logout-form').submit();">
                   Logout
               </a>
 
-              <form id="logout-form" action="logout" method="POST" style="display: none;">
+              <form id="logout-form" action="/logout" method="POST" style="display: none;">
                   {{ csrf_field() }}
               </form>
           @endif
