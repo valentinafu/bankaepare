@@ -11,7 +11,7 @@ class ExamsController extends Controller
     public function index(Subject $subject) {
         $exams = $subject->exams;
         $subjects = Subject::where('degree_id', '=', $subject->degree->id)->get();
-        return view('home', compact('exams', 'subjects'));
+        return view('home', compact('exams', 'subjects' ));
     }
 
     public function show(Exam $exam) {
