@@ -15,14 +15,12 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $faculties = DB::table('faculties')->get();
+    return view('home', compact('faculties'));
 })->name('home');
 
-Route::get('/test', function () {
-    $faculties = \App\Faculty::first();
-    return $faculties->degrees->first()->subjects->first()->exams;
-    //return view('test', compact('faculties'));
-});
+Route::get('/faculties/{faculty}', 'ExamsController@degrees');
+Route::get('/degrees/{degree}', 'ExamsController@subjects');
 
 Route::get('login', 'Auth\AuthController@redirectToProvider');
 Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');
