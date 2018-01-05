@@ -14,9 +14,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', 'ExamsController@index')->name('home');
 
 Route::get('/test', function () {
     $faculties = \App\Faculty::first();
@@ -27,3 +25,7 @@ Route::get('/test', function () {
 Route::get('login', 'Auth\AuthController@redirectToProvider');
 Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');
 Route::post('logout', 'Auth\AuthController@logout');
+
+Route::get('exams', 'ExamsController@index');
+Route::post('exams', 'ExamsController@upload');
+Route::delete('exams/{id}', 'ExamsController@destroy');
