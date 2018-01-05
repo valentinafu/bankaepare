@@ -4,19 +4,20 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateExamsTable extends Migration
+class CreateImageGalleryTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     *`
      * @return void
      */
     public function up()
     {
-        Schema::create('exams', function (Blueprint $table) {
+        Schema::create('image_gallery', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->integer('subject_id');
+            $table->string('title');
+
+            $table->string('image');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateExamsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exams');
+        Schema::dropIfExists('image_gallery');
     }
 }
