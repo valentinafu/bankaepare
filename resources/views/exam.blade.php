@@ -11,10 +11,7 @@
         </div><!--/row-->
     </div><!--/span-->
 
-
-
     <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-
         <div class="list-group">
             @if(isset($solutions)&& $solutions->count())
                 @foreach( $solutions as $solution)
@@ -24,7 +21,5 @@
             @endif
             <a href="/solutions/{{ $exam->id }}/create" class="list-group-item">Add Solution</a>
         </div>
-
     </div><!--/span-->
-
 @endsection

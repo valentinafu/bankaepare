@@ -37,6 +37,8 @@ Route::get('/exams/{exam}', 'ExamsController@show');
 Route::post('exams', 'ExamsController@upload');
 Route::delete('exams/{id}', 'ExamsController@destroy');
 
+Route::get('solutions/{exam}/create', 'SolutionsController@create');
+Route::post('solutions/store', 'SolutionsController@store');
 
 Route::get('login', 'Auth\AuthController@redirectToProvider');
 Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');
