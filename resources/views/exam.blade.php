@@ -11,11 +11,18 @@
         </div><!--/row-->
     </div><!--/span-->
 
+    @if(isset($solutions)&& $solutions->count())
+
     <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+
         <div class="list-group">
-            <a href="#" class="list-group-item active">Solution</a>
-            <a href="#" class="list-group-item">Other solution</a>
-            <a href="#" class="list-group-item">Earth is flat</a>
+          @foreach( $solutions as $solution)
+            <a href="#" class="list-group-item">{{ $solution->title }}</a>
+
+            @endforeach
+              <a href="/solutions/{{ $exam->id }}/create" class="list-group-item">Add Solution</a>
         </div>
+
     </div><!--/span-->
+    @endif
 @endsection
