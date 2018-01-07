@@ -24,8 +24,6 @@
 
     <div class="row row-offcanvas row-offcanvas-right">
         @yield ('content')
-
-        @include ('layouts.sidebar')
     </div><!--/row-->
 
     <hr>

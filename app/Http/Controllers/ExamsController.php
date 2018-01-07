@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Exam;
+use App\Subject;
+use Illuminate\Http\Request;
 
 class ExamsController extends Controller
 {
-    public function index() {
-        $exams = Exam::all();
+    public function index(Subject $subject) {
+        $exams = $subject->exams;
+        $subjects = Subject::where('degree_id', '=', $subject->degree->id)->get();
+        return view('home', compact('exams', 'subjects' ));
+    }
 
-        return view('home',compact('exams'));
+    public function show(Exam $exam) {
+        return view('exam', compact('exam'));
     }
 
     public function upload(Request $request) {
@@ -28,7 +33,7 @@ class ExamsController extends Controller
 
         $request->image->move(public_path('images/exams'), $examImageName);
 
-        return redirect()->home()->with('success','Image Uploaded successfully.');
+        return redirect()->back()->with('success','Image Uploaded successfully.');
 
     }
 
@@ -36,6 +41,6 @@ class ExamsController extends Controller
         Exam::find($id)->delete();
 
         //Delete the image from the images/exams folder
-        return redirect()->home()->with('success','Image removed successfully.');
+        return redirect()->back()->with('success','Image removed successfully.');
     }
 }

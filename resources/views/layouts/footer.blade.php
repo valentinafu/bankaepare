@@ -1,5 +1,5 @@
 <footer style="text-align: center">
-    <p>&copy; Banka e Parë 2017</p>
+    <p>&copy; Banka e Parë 2018</p>
 </footer>
 
 <!-- Bootstrap core JavaScript
