@@ -1,0 +1,94 @@
+@font-face {
+    font-family: ubuntu;
+    src: url('../fonts/ubuntu.ttf');
+}
+.box {
+    border-radius: 3px;
+    background: #ffffff;
+    border-top: 3px solid #d2d6de;
+    width: 100%;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+/*Box Puna ----------------------*/
+.box-puna {
+    border-top-color: #367fa9;
+}
+.box-puna p {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: ubuntu;
+}
+.box-puna ul {
+    text-align: center;
+}
+/*Box Kredincialet ----------------------*/
+.box-kredincialet {
+    border-top-color: #00c0ef;
+}
+.box-kredincialet p {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: ubuntu;
+}
+.box-kredincialet input {
+    margin-top: 10px;
+}
+/*Box Studimi ----------------------*/
+.box-studimi {
+    border-top-color: #00a65a;
+    text-align: center;
+}
+.box-studimi p {
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: ubuntu;
+}
+.box-studimi label{
+    padding-right: 20px;
+}
+/*Box Eksperiencat----------------------*/
+.box-eksperiencat {
+    border-top-color: #dd4b39;
+    margin-top: 6px;
+}
+.box-eksperiencat p {
+    text-align: center;
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: ubuntu;
+}
+/*Box Disponueshmeria----------------------*/
+.box-disponueshmeria {
+    border-top-color: #f39c12;
+    margin-top: 6px;
+    text-align: center;
+}
+.box-disponueshmeria p {
+    
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 15px;
+    font-family: ubuntu;
+}
+.box-disponueshmeria label{
+    padding-right: 20px;
+}
+
+.button-ngarko {
+    border: 1px solid #367fa9;
+    border-radius: 5px;
+    background-color: #367fa9;
+    color: white;
+    width: 135px;
+    height: 35px;
+    outline: none;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: ubuntu;
+}

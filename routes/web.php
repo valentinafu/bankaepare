@@ -11,18 +11,34 @@
 |
 */
 
+use App\Degree;
+use App\Faculty;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
+    $faculties = Faculty::all();
+    $notifications = DB::table('notifications')->get();
+    return view('home', compact('faculties', 'notifications'));
 })->name('home');
 
-Route::get('/test', function () {
-    $faculties = \App\Faculty::first();
-    return $faculties->degrees->first()->subjects->first()->exams;
-    //return view('test', compact('faculties'));
+Route::get('/faculties/{faculty}', function (Faculty $faculty) {
+    $degrees = $faculty->degrees;
+    return view('home', compact('degrees'));
 });
+
+Route::get('/degrees/{degree}', function (Degree $degree) {
+    $subjects = $degree->subjects;
+    return view('home', compact('subjects'));
+});
+
+Route::get('/subjects/{subject}', 'ExamsController@index');
+Route::get('/exams/{exam}', 'ExamsController@show');
+Route::post('exams', 'ExamsController@upload');
+Route::delete('exams/{id}', 'ExamsController@destroy');
+
+Route::get('solutions/{exam}/create', 'SolutionsController@create');
+Route::post('solutions/store', 'SolutionsController@store');
 
 Route::get('login', 'Auth\AuthController@redirectToProvider');
 Route::get('login/callback', 'Auth\AuthController@handleProviderCallback');

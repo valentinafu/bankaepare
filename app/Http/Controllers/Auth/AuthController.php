@@ -63,7 +63,7 @@ class AuthController extends Controller
     }
 
     protected function sendSuccessResponse() {
-        return redirect()->intended('/');
+        return redirect()->home();
     }
 
     protected function sendFailedResponse($msg = null) {
