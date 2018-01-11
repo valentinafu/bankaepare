@@ -11,18 +11,14 @@
         </div><!--/row-->
     </div><!--/span-->
 
-    @if(isset($solutions)&& $solutions->count())
-
     <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
-
         <div class="list-group">
-          @foreach( $solutions as $solution)
-            <a href="#" class="list-group-item">{{ $solution->title }}</a>
-
-            @endforeach
-              <a href="/solutions/{{ $exam->id }}/create" class="list-group-item">Add Solution</a>
+            @if(isset($solutions)&& $solutions->count())
+                @foreach( $solutions as $solution)
+                    <a href="#" class="list-group-item">{{ $solution->title }}</a>
+                @endforeach
+            @endif
+            <a href="/solutions/{{ $exam->id }}/create" class="list-group-item">Add Solution</a>
         </div>
-
     </div><!--/span-->
-    @endif
 @endsection
