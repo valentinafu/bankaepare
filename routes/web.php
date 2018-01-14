@@ -31,6 +31,10 @@ Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
     return view('home', compact('subjects'));
 });
+Route::get('/notifications', function () {
+    $notifications = DB::table('notifications')->get();
+    return view('notifications',compact('notifications'));
+})->name('notifications');
 
 Route::get('/subjects/{subject}', 'ExamsController@index');
 Route::get('/exams/{exam}', 'ExamsController@show');

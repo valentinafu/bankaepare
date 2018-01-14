@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Notifications\UploadExam;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -33,7 +34,7 @@ class ExamsController extends Controller
         $examImageName = $exam->id . '.' . $request->image->getClientOriginalExtension();
 
         $request->image->move(public_path('images/exams'), $examImageName);
-
+        auth()->user()->notify(new UploadExam($exam));
         return redirect()->back()->with('success','Image Uploaded successfully.');
 
     }
@@ -44,4 +45,7 @@ class ExamsController extends Controller
         //Delete the image from the images/exams folder
         return redirect()->back()->with('success','Image removed successfully.');
     }
+//    public function postExam (Exam $exam){
+//        auth()->user()->notify(new UploadExam($exam));
+//        return view('home');}
 }
