@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('access_token')->nullable();
 
             $table->integer('role')->default(1);
+            $table->integer('active')->default(1);
 
             $table->rememberToken();
             $table->timestamps();

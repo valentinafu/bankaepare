@@ -9,6 +9,16 @@
 
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
 
+        @if (Auth::user() && Auth::user()->role == 3)
+            <li class="nav-item">
+                <a class="nav-link" href="/admin">Admin Panel</a>
+            </li>
+        @elseif (Auth::user() && Auth::user()->role == 2)
+            <li class="nav-item">
+                <a class="nav-link" href="/moderator">Moderator Panel</a>
+            </li>
+        @endif
+
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 

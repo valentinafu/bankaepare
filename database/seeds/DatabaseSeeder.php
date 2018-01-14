@@ -23,5 +23,26 @@ class DatabaseSeeder extends Seeder
 
         $this->call(DegreesTableSeeder::class);
         $this->call(SubjectsTableSeeder::class);
+
+        DB::table('users')->insert([
+            [
+                'name' => 'Sara Tanku',
+                'email' => 'sara.tanku@gmail.com',
+                'google_id' => '112993409013064542088',
+                'role' => '3',
+                'active' => '1',
+                'created_at' => '2018-01-07 10:56:11',
+                'updated_at' => '2018-01-07 10:56:11'
+            ],
+            [
+                'name' => 'Mariglen Jahollari',
+                'email' => 'mariglen.jahollari@fshnstudent.info',
+                'google_id' => '103948016993609272847',
+                'role' => '2',
+                'active' => '1',
+                'created_at' => '2018-01-07 14:03:13',
+                'updated_at' => '2018-01-07 14:03:13'
+            ]
+        ]);
     }
 }
