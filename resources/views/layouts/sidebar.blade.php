@@ -24,7 +24,8 @@
         @elseif(isset($faculties))
             <ul class="sidebar-menu" data-widget="tree">
                 @foreach($faculties as $faculty)
-                    <li><a href="/faculties/{{ $faculty->id }}"><span>{{ $faculty->name }}</span></a></li>
+                    <!--<li><a href="/faculties/{{ $faculty->id }}"><span>{{ $faculty->name }}</span></a></li>-->
+                    <li><span onclick="shit()">{{ $faculty->name }}</span></li>
                 @endforeach
             </ul>
         @endif
