@@ -5,8 +5,7 @@ body {
 /*Links*/
 a:hover,a:active,a:focus{
   outline: none;
-  text-decoration: 
-  none;color: white;
+  text-decoration: none;
 }
 .sidebar-menu > li > a{
   border-left: 3px solid transparent;

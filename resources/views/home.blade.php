@@ -54,20 +54,36 @@
             @endforeach
         </div>
     @elseif(!isset($exams))
-        <div class="row">
-            @if(isset($subjects))
-                <ul>
-                    @foreach($subjects as $subject)
-                        <li><a href="/subjects/{{ $subject->id }}">{{ $subject->name }}</a></li>
-                    @endforeach
-                </ul>
-            @elseif(isset($degrees))
-                <ul>
-                    @foreach($degrees as $degree)
-                        <li><a href="/degrees/{{ $degree->id }}">{{ $degree->name }}</a></li>
-                    @endforeach
-                </ul>
-            @elseif(isset($faculties))
+        @if(isset($subjects))
+            <ul>
+                @foreach($subjects as $subject)
+                    <li><a href="/subjects/{{ $subject->id }}">{{ $subject->name }}</a></li>
+                @endforeach
+            </ul>
+        @elseif(isset($degrees) && $degrees->count())
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">{{ $degrees[0]->faculty->name }}</h3>
+                </div>
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                        <tr>
+                            <th>Degët</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($degrees as $degree)
+                            <tr>
+                                <td><a href="/degrees/{{ $degree->id }}">{{ $degree->name }}</a></td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        @elseif(isset($faculties))
+            <div class="row">
                 @foreach($faculties as $faculty)
                     <div class="col-md-4">
                         <div class="box box-studimi">
@@ -78,7 +94,7 @@
                         </div>
                     </div>
                 @endforeach
-            @endif
-        </div>
+            </div>
+        @endif
     @endif
 @endsection

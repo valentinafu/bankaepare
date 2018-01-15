@@ -46,7 +46,7 @@
                         <tr>
                             <td style="padding: 10px;"> {{$moderator->name}} </td>
                             <td style="padding: 10px;"> {{$moderator->email}} </td>
-                            <td style="padding: 10px;"> {{$user->active}} </td>
+                            <td style="padding: 10px;"> {{$moderator->active}} </td>
                             <td style="padding: 10px;"><a href="/users/edit/{{ $moderator->id }}">Edit Moderator</a></td>
                             <td style="padding: 10px;"><a href="/users/deactivate/{{ $moderator->id }}">Deactivate Moderator</a></td>
                         </tr>

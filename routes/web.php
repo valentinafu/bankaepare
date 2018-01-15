@@ -28,6 +28,10 @@ Route::get('/faculties/{faculty}', function (Faculty $faculty) {
     $degrees = $faculty->degrees;
     return view('home', compact('degrees'));
 });
+Route::get('/ajax_faculties/{faculty}', function (Faculty $faculty) {
+    $degrees = $faculty->degrees;
+    return json_encode($degrees);
+});
 
 Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
@@ -37,7 +41,7 @@ Route::get('/degrees/{degree}', function (Degree $degree) {
 Route::get('/subjects/{subject}', 'ExamsController@index');
 Route::get('/exams/{exam}', 'ExamsController@show');
 Route::post('/exams', 'ExamsController@upload');
-Route::get('/exams/delete/{id}', 'ExamsController@destroy');
+Route::get('/exams/delete/{exam}', 'ExamsController@destroy');
 
 Route::get('/solutions/{exam}/create', 'SolutionsController@create');
 Route::post('/solutions/store', 'SolutionsController@store');

@@ -38,10 +38,15 @@ class ExamsController extends Controller
 
     }
 
-    public function destroy($id) {
-        Exam::find($id)->delete();
+    public function destroy(Exam $exam) {
+        Exam::find($exam->id)->delete();
 
-        //Delete the image from the images/exams folder
-        return redirect()->back()->with('success','Image removed successfully.');
+        if(is_file($exam->id . '.jpg')) {
+            Storage::delete($exam->id . '.jpg');
+        } else {
+            return redirect("/subjects/" . $exam->subject->id)->with('error','Image does not exist.');
+        }
+
+        return redirect("/subjects/" . $exam->subject->id)->with('success','Image removed successfully.');
     }
 }
