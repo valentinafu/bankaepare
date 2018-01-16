@@ -19,6 +19,9 @@
                 @endforeach
             @endif
             <a href="/solutions/{{ $exam->id }}/create" class="list-group-item">Add Solution</a>
+            @if (Auth::user() && Auth::user()->role != 1)
+                <a href="/exams/delete/{{ $exam->id }}" style = "margin: 10px auto; float:right;">Delete Exam</a>
+            @endif
         </div>
     </div><!--/span-->
 @endsection

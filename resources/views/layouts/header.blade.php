@@ -12,11 +12,20 @@
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
-                <li class="dropdown user user-menu">
+                @if (Auth::user() && Auth::user()->role == 3)
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin"><span class="hidden-xs">Admin Panel</span></a>
+                    </li>
+                @elseif (Auth::user() && Auth::user()->role == 2)
+                    <li class="nav-item">
+                        <a class="nav-link" href="/moderator">Moderator Panel</a>
+                    </li>
+                @endif
 
-                    @if (Auth::guest())
-                        <span class="hidden-xs"><a href="/login">Login</a></span>
-                    @else
+                @if (Auth::guest())
+                    <li><a href="/login"><span class="hidden-xs">Login</span></a></li>
+                @else
+                    <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <img src="{{ auth()->user()->avatar }}" alt="Avatar" class="user-image">
                             <span class="hidden-xs">{{ Auth::user()->name }}</span>
@@ -29,14 +38,15 @@
                             <li class="user-footer">
                                 <div class="pull-right">
                                     <form id="logout-form" action="/logout" method="POST">
-                                    {{ csrf_field() }}
-                                    <button type="submit" class="btn btn-default btn-flat">Log Out</button>
+                                        {{ csrf_field() }}
+                                        <button type="submit" class="btn btn-default btn-flat">Log Out</button>
                                     </form>
                                 </div>
                             </li>
                         </ul>
-                    @endif
-                </li>
+
+                    </li>
+                @endif
 
             </ul>
         </div>
