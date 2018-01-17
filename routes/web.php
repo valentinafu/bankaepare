@@ -26,16 +26,19 @@ Route::get('/', function () {
 
 Route::get('/faculties/{faculty}', function (Faculty $faculty) {
     $degrees = $faculty->degrees;
-    return view('home', compact('degrees'));
+    $faculties = Faculty::all();
+    return view('home', compact('degrees', 'faculty', 'faculties'));
 });
 Route::get('/ajax_faculties/{faculty}', function (Faculty $faculty) {
     $degrees = $faculty->degrees;
-    return json_encode($degrees);
+    //return json_encode($degrees);
+    return $degrees;
 });
 
 Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
-    return view('home', compact('subjects'));
+    $degrees = $degree->faculty->degrees;
+    return view('home', compact('subjects', 'degree', 'degrees'));
 });
 
 Route::get('/subjects/{subject}', 'ExamsController@index');

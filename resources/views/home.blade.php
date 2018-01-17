@@ -15,9 +15,15 @@
                 <div class="alert alert-success alert-block">
                     <strong>{{ $message }}</strong>
                 </div>
+            @elseif ($message = Session::get('error'))
+                <div class="alert alert-danger alert-block">
+                    <strong>{{ $message }}</strong>
+                </div>
             @endif
 
             <div class="row">
+                @if(isset($subject))
+                @endif
                 <div class="form-group">
                     <label for="subject">Subject</label>
                     <select class="form-control" name="subject">
