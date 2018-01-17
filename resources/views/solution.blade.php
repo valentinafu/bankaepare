@@ -29,10 +29,17 @@
                             <label for="image">Solution Image:</label>
                             <input type="file" name="image" class="form-control">
                         </div>
+
+                        <label for="solution">Solution:</label>
+                        <div class="form-group">
+
+                            <textarea name ="notes"  rows="10" name="textsolution"></textarea>
+                        </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Upload</button>
                         </div>
                     </div>
+
 
                     @include ('layouts.errors')
                 </form>

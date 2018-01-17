@@ -1,7 +1,5 @@
 @extends('layouts.master')
-
 @section('content')
-
     <!-- Only if a user is logged in, the upload form is shown -->
     @if (Auth::user())
 
@@ -22,12 +20,34 @@
             @endif
 
             <div class="row">
-                @if(isset($subject))
-                @endif
+                <div class="form-group">
+                    <label for="faculty">Faculty</label>
+                    <select class="form-control" name="faculty">
+                        @if(isset($faculties) && $faculties->count())
+                            @foreach($faculties as $faculty)
+                                <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                            @endforeach
+                        @else
+                            <option value="1"> Fakulteti i Shkencave te Natyres</option>
+                        @endif
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="degree">Degree</label>
+                    <select class="form-control" name="degree">
+                        @if(isset($degrees) && $degrees->count())
+                            @foreach($degrees as $degree) // vektori dhe variabli
+                                <option value="{{ $degree->id }}">{{ $degree->name }}</option>
+                            @endforeach
+                        @else
+                            <option value="1"> Bachelor ne IMI</option>
+                        @endif
+                    </select>
+                </div>
                 <div class="form-group">
                     <label for="subject">Subject</label>
                     <select class="form-control" name="subject">
-                        @if(isset($subjects) && $subjects->count())
+                        @if(isset($subjects) && $subjects->count()) //cdo element i subjects eshte nje objekt (subject ->objekt)
                             @foreach($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
                             @endforeach
@@ -43,6 +63,8 @@
                 <div class="form-group">
                     <button type="submit" class="btn btn-success">Upload</button>
                 </div>
+
+
             </div>
 
             @include ('layouts.errors')
@@ -57,7 +79,19 @@
                         <img class="img-responsive" alt="" src="/images/exams/{{ $exam->id }}.jpg" />
                     </a>
                 </div>
+            <!--    <form action="{{ url('home',$exam->id) }}" method="POST">
+
+                    <input type="hidden" name="_method" value="delete">
+
+                    {!! csrf_field() !!}
+
+                    <button type="submit" class="close-icon btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+
+                </form>
+                -->
             @endforeach
+        </div>
+
         </div>
     @elseif(!isset($exams))
         @if(isset($subjects))

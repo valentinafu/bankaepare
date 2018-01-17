@@ -14,11 +14,10 @@ class CreateSolutionsTable extends Migration
     public function up()
     {
         Schema::create('solutions', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id'); //imazhi
             $table->integer('exam_id');
             $table->string('title');
             $table->text('body');
-
             $table->timestamps();
         });
     }

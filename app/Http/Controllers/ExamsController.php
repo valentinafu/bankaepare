@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Degree;
 use App\Exam;
+use App\Faculty;
 use App\Subject;
 use Illuminate\Http\Request;
 
@@ -11,7 +13,10 @@ class ExamsController extends Controller
     public function index(Subject $subject) {
         $exams = $subject->exams;
         $subjects = Subject::where('degree_id', '=', $subject->degree->id)->get();
-        return view('home', compact('exams', 'subjects', 'subject'));
+        $faculties = Faculty::all();
+        $degrees = Degree::all();
+        return view('home', compact('exams', 'subjects', 'subject','faculties','degrees')); //i vendos ne vektor te gjitha,tek faqja home i akseson te gjitha tek home blade
+
     }
 
     public function show(Exam $exam) {
@@ -21,7 +26,7 @@ class ExamsController extends Controller
 
     public function upload(Request $request) {
         $this->validate($request, [
-            'subject' => 'required',
+            'subject' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
         ]);
 
@@ -34,7 +39,7 @@ class ExamsController extends Controller
 
         $request->image->move(public_path('images/exams'), $examImageName);
 
-        return redirect()->back()->with('success','Image Uploaded successfully.');
+        return redirect("/subjects/{$exam->subject_id}")->with('success','Image Uploaded successfully.');
 
     }
 
