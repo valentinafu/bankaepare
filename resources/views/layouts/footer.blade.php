@@ -4,6 +4,7 @@
 
         $.ajax('/ajax_faculties/1', {
             success: function(data) {
+                alert(data[0]['name']);
                 var degrees = JSON.parse(data);
                 var links = document.getElementById('sidebarElements');
 
