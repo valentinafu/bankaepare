@@ -44,5 +44,10 @@ class DatabaseSeeder extends Seeder
                 'updated_at' => '2018-01-07 14:03:13'
             ]
         ]);
+
+        DB::table('moderator_degrees')->insert([
+            'moderator_id' => '2',
+            'degree_id' => '1'
+        ]);
     }
 }

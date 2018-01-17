@@ -14,6 +14,7 @@
 use App\Degree;
 use App\Exam;
 use App\Faculty;
+use App\Notification;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -84,7 +85,9 @@ Route::get('/admin/exams', function () {
 });
 
 Route::get('/moderator', function () {
-    if (Auth::user() && Auth::user()->role == 2)
-        return view( 'moderator');
+    if (Auth::user() && Auth::user()->role == 2) {
+        $notifications = Auth::user()->notifications;
+        return view('moderator', compact('notifications'));
+    }
     return view('home');
 });

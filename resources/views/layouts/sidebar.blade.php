@@ -9,7 +9,7 @@
           </span>
         </div>
 
-        @if(Request::is('subjects/*') && isset($subjects))
+        @if((Request::is('subjects/*') || Request::is('exams/*')) && isset($subjects))
             <ul class="sidebar-menu" data-widget="tree">
                 @foreach($subjects as $subject)
                     <li><a href="/subjects/{{ $subject->id }}"><span>{{ $subject->name }}</span></a></li>
