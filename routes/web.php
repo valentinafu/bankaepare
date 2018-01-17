@@ -38,7 +38,8 @@ Route::get('/ajax_faculties/{faculty}', function (Faculty $faculty) {
 Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
     $degrees = $degree->faculty->degrees;
-    return view('home', compact('subjects', 'degree', 'degrees'));
+    $faculties = Faculty::all();
+    return view('home', compact('subjects', 'degree', 'degrees', 'faculties'));
 });
 
 Route::get('/subjects/{subject}', 'ExamsController@index');
