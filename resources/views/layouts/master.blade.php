@@ -1,36 +1,35 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../../../favicon.ico">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Banka e Parë</title>
+    <link rel="shortcut icon"  href="/images/icon.png">
 
-    <title>Off Canvas Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-
-    <!-- Custom styles for this template -->
-    <link href="/css/mysuperfancystyle.css" rel="stylesheet">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="/components/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
+    <!-- My Styles -->
+    @yield ('custom_styles')
+    <link rel="stylesheet" type="text/css" href="/css/main-structure.css">
 </head>
 
-<body>
+<body class="sidebar-mini">
 
-@include ('layouts.header')
+<div>
+    @include ('layouts.header')
 
-<main role="main" class="container">
+    @include ('layouts.sidebar')
 
-    <div class="row row-offcanvas row-offcanvas-right">
-        @yield ('content')
+    <div class="content-wrapper"><!-- Main Box -->
+        <div style="width: 100%;" class="container">
+            <div style="margin-bottom: 60px;" class="row"></div>
+            @yield ('content')
+        </div> <!-- End of the container -->
+    </div><!-- End Main Box -->
 
-        @include ('layouts.sidebar')
-    </div><!--/row-->
-
-    <hr>
-
-</main>
+</div>
 
 @include ('layouts.footer')
 
