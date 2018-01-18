@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('custom_styles')
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+@endsection
+
 @section('content')
     <div class="col-12 col-md-12">
         <p class="float-right d-md-none">
@@ -18,7 +22,6 @@
                 <form action="{{ url('solutions/store') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
-
                     <div class="row">
                         <input type="hidden" name="exam" value="{{ $exam->id }}">
                         <div class="form-group">
@@ -32,14 +35,12 @@
 
                         <label for="solution">Solution:</label>
                         <div class="form-group">
-
-                            <textarea name ="notes"  rows="10" name="textsolution"></textarea>
+                            <textarea name ="body" cols="50" rows="10"></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Upload</button>
                         </div>
                     </div>
-
 
                     @include ('layouts.errors')
                 </form>

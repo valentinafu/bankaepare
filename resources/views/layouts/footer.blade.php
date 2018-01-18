@@ -41,6 +41,22 @@
 <script src="/components/bootstrap/js/bootstrap.min.js"></script>
 <script src="/js/adminlte.js"></script>
 
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $( function() {
+        $( "#accordion" ).accordion(
+            {
+                event: "click",
+                active: false,
+                collapsible: true,
+                autoHeight: false
+
+            }
+        );
+
+    } );
+</script>
+
 <!-- page script -->
 <script>
     $(function () {

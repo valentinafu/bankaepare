@@ -11,7 +11,7 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="/components/font-awesome/css/font-awesome.min.css">
     <!-- My Styles -->
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    @yield ('custom_styles')
     <link rel="stylesheet" type="text/css" href="/css/main-structure.css">
 </head>
 

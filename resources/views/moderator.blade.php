@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('custom_styles')
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+@endsection
+
 @section('content')
     <div class="col-12 col-md-12">
         <div class="jumbotron">
