@@ -87,7 +87,8 @@ Route::get('/admin/exams', function () {
 Route::get('/moderator', function () {
     if (Auth::user() && Auth::user()->role == 2) {
         $notifications = Auth::user()->notifications;
-        return view('moderator', compact('notifications'));
+        $faculties = Faculty::all();
+        return view('moderator', compact('notifications', 'faculties'));
     }
     return view('home');
 });

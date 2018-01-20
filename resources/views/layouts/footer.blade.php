@@ -1,4 +1,37 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="/components/jquery/jquery.min.js"></script>
+<script src="/js/jquery.dataTables.min.js"></script>
+<script src="/js/dataTables.bootstrap.min.js"></script>
+<script src="/components/bootstrap/js/bootstrap.min.js"></script>
+<script src="/js/adminlte.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
+    $(function() {
+        $( "#accordion" ).accordion(
+            {
+                event: "click",
+                active: false,
+                collapsible: true,
+                autoHeight: false
+
+            }
+        );
+    });
+</script>
+
+<script>
+    $(function () {
+        $('#example1').DataTable()
+    })
+
+    $(document).ready(
+        setTimeout(function () {
+            $('#uploadMessage').animate({opacity: 0, height: 0, margin: 0, padding: 0}, 1000, function () {
+                $('#uploadMessage').remove();
+            });
+        }, 3000)
+    );
+
     function shit() {
         $.ajax('/ajax_faculties/1', {
             success: function(data) {
@@ -32,34 +65,4 @@
             }
         });
     }
-</script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script src="/components/jquery/jquery.min.js"></script>
-<script src="/js/jquery.dataTables.min.js"></script>
-<script src="/js/dataTables.bootstrap.min.js"></script>
-<script src="/components/bootstrap/js/bootstrap.min.js"></script>
-<script src="/js/adminlte.js"></script>
-
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script>
-    $( function() {
-        $( "#accordion" ).accordion(
-            {
-                event: "click",
-                active: false,
-                collapsible: true,
-                autoHeight: false
-
-            }
-        );
-
-    } );
-</script>
-
-<!-- page script -->
-<script>
-    $(function () {
-        $('#example1').DataTable()
-    })
 </script>

@@ -5,12 +5,9 @@
 @endsection
 
 @section('content')
+    <div class="row">
     <div class="col-12 col-md-12">
-        <p class="float-right d-md-none">
-            <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas">Toggle nav</button>
-        </p>
         <div class="jumbotron">
-
 
             <!-- Only if a user is logged in, the upload form is shown -->
             @if (Auth::user())
@@ -47,6 +44,6 @@
             @endif
 
         </div>
-
     </div><!--/span-->
+    </div>
 @endsection

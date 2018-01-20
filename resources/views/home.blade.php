@@ -8,7 +8,11 @@
 
 @section('content')
     <div class="row">
-        <div class="col-md-8">
+        @if (Auth::user())
+            <div class="col-md-8">
+        @else
+                    <div class="col-md-12">
+        @endif
             @if(isset($exams) && $exams->count())
                 <div class="row">
                     @foreach($exams as $exam)
@@ -59,7 +63,11 @@
                 @elseif(isset($faculties))
                     <div class="row">
                         @foreach($faculties as $faculty)
-                            <div class="col-md-6">
+                            @if (Auth::user())
+                                <div class="col-md-6">
+                                    @else
+                                        <div class="col-md-4">
+                                            @endif
                                 <div class="box box-studimi">
                                     <a href="/faculties/{{ $faculty->id }}">
                                         <p>{{ $faculty->name }}</p>
@@ -82,11 +90,11 @@
                     {{ csrf_field() }}
 
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block">
+                        <div class="alert alert-success alert-block" id="uploadMessage">
                             <strong>{{ $message }}</strong>
                         </div>
                     @elseif ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block">
+                        <div class="alert alert-danger alert-block" id="uploadMessage">
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif

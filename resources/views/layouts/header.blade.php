@@ -13,13 +13,9 @@
             <ul class="nav navbar-nav">
 
                 @if (Auth::user() && Auth::user()->role == 3)
-                    <li class="nav-item">
-                        <a class="nav-link" href="/admin"><span class="hidden-xs">Admin Panel</span></a>
-                    </li>
+                    <li><a href="/admin"><span class="hidden-xs">Admin Panel</span></a></li>
                 @elseif (Auth::user() && Auth::user()->role == 2)
-                    <li class="nav-item">
-                        <a class="nav-link" href="/moderator">Moderator Panel</a>
-                    </li>
+                    <li><a href="/moderator"><span class="hidden-xs">Moderator Panel</span></a></li>
                 @endif
 
                 @if (Auth::guest())

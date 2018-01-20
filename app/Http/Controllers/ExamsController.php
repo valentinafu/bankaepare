@@ -49,7 +49,7 @@ class ExamsController extends Controller
         $notification->data = auth()->user()->name . " ngarkoi një provim në " . $exam->subject->name;
         $notification->redirect = "/exams/" . $exam->id;
         $notification->save();
-        return redirect("/subjects/{$exam->subject_id}")->with('success', 'Image Uploaded successfully.');
+        return redirect("/subjects/{$exam->subject_id}")->with('success', 'Provimi u ngarkua me sukses.');
 
     }
 
@@ -57,12 +57,12 @@ class ExamsController extends Controller
     {
         Exam::find($exam->id)->delete();
 
-        if (is_file($exam->id . '.jpg')) {
-            Storage::delete($exam->id . '.jpg');
+        if (file_exists(public_path() . '/images/exams/' . $exam->id . '.jpg')) {
+            unlink(public_path() . '/images/exams/' . $exam->id . '.jpg');
         } else {
-            return redirect("/subjects/" . $exam->subject->id)->with('error', 'Image does not exist.');
+            return redirect("/subjects/" . $exam->subject->id)->with('error', 'Provimi nuk ekziston.');
         }
 
-        return redirect("/subjects/" . $exam->subject->id)->with('success', 'Image removed successfully.');
+        return redirect("/subjects/" . $exam->subject->id)->with('success', 'Provimi u fshi me sukses.');
     }
 }
