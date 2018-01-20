@@ -38,7 +38,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'deactivate']);
     }
 
     public function redirectToProvider() {
@@ -68,21 +68,30 @@ class AuthController extends Controller
 
     protected function sendFailedResponse($msg = null) {
         return redirect()->route('login')
-            ->withErrors(['msg' => $msg ?: 'Unable to login, try with another provider to login.']);
+            ->withErrors(['msg' => $msg ?: 'Nuk mund të futeni me këtë email.']);
+    }
+
+    public function deactivate(User $user) {
+
+        dd($user);
+        $user->update(['active' => 'false']);
+        return redirect()->back();
     }
 
     protected function loginOrCreateAccount($providerUser) {
-        // check for already has account
+        // check if user already has an account
         $user = User::where('email', $providerUser->getEmail())->first();
 
-        // if user already found
-        if( $user ) {
+        // if user already found and is not deactivated
+        if($user && $user->active == 1) {
             // update the avatar and provider that might have changed
             $user->update([
                 'avatar' => $providerUser->getAvatar(),
                 'google_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
+        } elseif($user && $user->active == 0) {
+            return $this->sendFailedResponse("Kjo llogari është ç'aktivizuar");
         } else {
             // create a new user
             $user = User::create([

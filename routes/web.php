@@ -30,11 +30,6 @@ Route::get('/faculties/{faculty}', function (Faculty $faculty) {
     $faculties = Faculty::all();
     return view('home', compact('degrees', 'faculty', 'faculties'));
 });
-Route::get('/ajax_faculties/{faculty}', function (Faculty $faculty) {
-    $degrees = $faculty->degrees;
-    //return json_encode($degrees);
-    return $degrees;
-});
 
 Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
@@ -47,6 +42,15 @@ Route::get('/subjects/{subject}', 'ExamsController@index');
 Route::get('/exams/{exam}', 'ExamsController@show');
 Route::post('/exams', 'ExamsController@upload');
 Route::get('/exams/delete/{exam}', 'ExamsController@destroy');
+Route::get('/exams/review/{exam}', function () {
+    //send a proper notification to the proper moderator, and redirect back with a message
+    dd('Unfinished...');
+});
+Route::get('/exams/download/{exam}', function (Exam $exam) {
+    return response()->download(
+        public_path() . '/images/exams/' . $exam->id . '.jpg',
+        $exam->id . '.jpg');
+});
 
 Route::get('/solutions/{exam}/create', 'SolutionsController@create');
 Route::post('/solutions/store', 'SolutionsController@store');
@@ -55,7 +59,7 @@ Route::get('/login', 'Auth\AuthController@redirectToProvider');
 Route::get('/login/callback', 'Auth\AuthController@handleProviderCallback');
 Route::post('/logout', 'Auth\AuthController@logout');
 
-
+Route::get('/users/deactivate/{user}', 'Auth\AuthController@deactivate');
 
 Route::get('/admin', function () {
     if (Auth::user() && Auth::user()->role == 3) {
