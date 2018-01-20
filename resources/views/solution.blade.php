@@ -2,20 +2,19 @@
 
 @section('custom_styles')
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+
 @endsection
 
 @section('content')
-    <div class="row">
+    <div class="row" style="width: 50%; margin: 0 auto;">
     <div class="col-12 col-md-12">
         <div class="jumbotron">
 
             <!-- Only if a user is logged in, the upload form is shown -->
             @if (Auth::user())
 
-                <h3>Upload a solution {{ Auth::user()->name }}</h3>
-                <h3>{{ $exam->subject->name }}</h3>
+                <h3>Ngarkoni një zgjidhje në lëndën {{ $exam->subject->name }}</h3>
                 <hr>
-
                 <form action="{{ url('solutions/store') }}" class="form-image-upload" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
 
@@ -32,7 +31,7 @@
 
                         <label for="solution">Solution:</label>
                         <div class="form-group">
-                            <textarea name ="body" cols="50" rows="10"></textarea>
+                            <textarea name ="body" cols="50" rows="6"></textarea>
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">Upload</button>

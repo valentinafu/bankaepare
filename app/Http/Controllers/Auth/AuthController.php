@@ -63,18 +63,16 @@ class AuthController extends Controller
     }
 
     protected function sendSuccessResponse() {
-        return redirect()->home();
+        return redirect()->home()->with('msg', 'Mirësevini');
     }
 
     protected function sendFailedResponse($msg = null) {
-        return redirect()->route('login')
-            ->withErrors(['msg' => $msg ?: 'Nuk mund të futeni me këtë email.']);
+        return redirect('/')->with('msg' , $msg ? $msg : 'Nuk mund të futeni me këtë email.');
     }
 
     public function deactivate(User $user) {
-
-        dd($user);
-        $user->update(['active' => 'false']);
+        $user->active = false;
+        $user->save();
         return redirect()->back();
     }
 

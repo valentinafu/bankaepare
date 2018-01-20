@@ -96,3 +96,11 @@ Route::get('/moderator', function () {
     }
     return view('home');
 });
+
+Route::get('/ajax_degrees/{faculty}', function (Faculty $faculty) {
+    return $faculty->degrees;
+});
+
+Route::get('/ajax_subjects/{degree}', function (Degree $degree) {
+    return $degree->subjects;
+});

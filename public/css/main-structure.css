@@ -1,3 +1,12 @@
+@media screen and (min-width: 767px) {
+  .sidebar-toggle {
+    display: none;
+  }
+}
+
+
+
+
 body {
   overflow-x: hidden;
   background-color: rgba(236, 240, 245, 0.7);
@@ -8,6 +17,9 @@ a:hover,a:active,a:focus{
   text-decoration: none;
 }
 .sidebar-menu > li > a{
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
   border-left: 3px solid transparent;
 }
 .sidebar a{

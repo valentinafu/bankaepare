@@ -41,10 +41,8 @@
                 </div>
             @endif
 
-            <br />
-
             @if (Auth::user())
-                <a style="width: 100%;" href="/exams/review/{{ $exam->id }}" class="btn btn-warning">Dërgo provimin për rishikim</a>
+                <a style="width: 100%; margin-top: 15px;" href="/exams/review/{{ $exam->id }}" class="btn btn-warning">Dërgo provimin për rishikim</a>
             @endif
         </div>
     </div>

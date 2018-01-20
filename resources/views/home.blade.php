@@ -9,10 +9,11 @@
 @section('content')
     <div class="row">
         @if (Auth::user())
-            <div class="col-md-8">
+            <?php $colValue = "col-md-8"; ?>
         @else
-                    <div class="col-md-12">
+            <?php $colValue = "col-md-12"; ?>
         @endif
+        <div class="{{ $colValue }}">
             @if(isset($exams) && $exams->count())
                 <div class="row">
                     @foreach($exams as $exam)
@@ -64,10 +65,11 @@
                     <div class="row">
                         @foreach($faculties as $faculty)
                             @if (Auth::user())
-                                <div class="col-md-6">
-                                    @else
-                                        <div class="col-md-4">
-                                            @endif
+                                <?php $colValue = "col-md-6"; ?>
+                            @else
+                                <?php $colValue = "col-md-4"; ?>
+                            @endif
+                            <div class="{{ $colValue }}">
                                 <div class="box box-studimi">
                                     <a href="/faculties/{{ $faculty->id }}">
                                         <p>{{ $faculty->name }}</p>
@@ -90,42 +92,42 @@
                     {{ csrf_field() }}
 
                     @if ($message = Session::get('success'))
-                        <div class="alert alert-success alert-block" id="uploadMessage">
+                        <div class="alert alert-success alert-block" id="message">
                             <strong>{{ $message }}</strong>
                         </div>
                     @elseif ($message = Session::get('error'))
-                        <div class="alert alert-danger alert-block" id="uploadMessage">
+                        <div class="alert alert-danger alert-block" id="message">
                             <strong>{{ $message }}</strong>
                         </div>
                     @endif
 
                     <div class="form-group">
                         <label for="faculty">Faculty</label>
-                        <select class="form-control" name="faculty">
+                        <select id="selectFaculty" class="form-control" name="faculty">
                             @if(isset($faculties) && $faculties->count())
                                 @foreach($faculties as $faculty)
                                     <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
                                 @endforeach
                             @else
-                                <option value="1"> Fakulteti i Shkencave te Natyres</option>
+                                <option value="1">Fakulteti i Shkencave të Natyrës</option>
                             @endif
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="degree">Degree</label>
-                        <select class="form-control" name="degree">
+                        <select id="selectDegree" class="form-control" name="degree">
                             @if(isset($degrees) && $degrees->count())
                                 @foreach($degrees as $degree) // vektori dhe variabli
                                 <option value="{{ $degree->id }}">{{ $degree->name }}</option>
                                 @endforeach
                             @else
-                                <option value="1"> Bachelor ne IMI</option>
+                                <option value="1">Bachelor në Inxhinieri Matematike dhe Informatike</option>
                             @endif
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="subject">Subject</label>
-                        <select class="form-control" name="subject">
+                        <select id="selectSubject" class="form-control" name="subject">
                             @if(isset($subjects) && $subjects->count()) //cdo element i subjects eshte nje objekt (subject ->objekt)
                             @foreach($subjects as $subject)
                                 <option value="{{ $subject->id }}">{{ $subject->name }}</option>
@@ -148,4 +150,11 @@
             </div>
         @endif
     </div>
+
+    <?php //$msg = "asdfasdfasd as asd as get the fuck out"; ?>
+    @if($msg = Session::get('msg')))
+        <div id="message" style="position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 10px; border-radius: 5px; padding: 20px; background-color: aqua; opacity: 0.8;">
+            {{ $msg }}
+        </div>
+    @endif
 @endsection
