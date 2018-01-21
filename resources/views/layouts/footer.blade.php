@@ -38,7 +38,7 @@
                 url: '/ajax_degrees/' + selectedFaculty,
                 type: 'GET',
                 success: function (data) {
-                    $('#selectDegree').empty();
+                    $('#selectDegree').children().remove();
                     for (var i = 0; i < data.length; i++) {
                         $('#selectDegree').append($("<option></option>").attr("value", data[i]['id']).text(data[i]['name']));
                     }
@@ -56,7 +56,7 @@
                 url: '/ajax_subjects/' + selectedDegree,
                 type: 'GET',
                 success: function (data) {
-                    $('#selectSubject').empty();
+                    $('#selectSubject').children().remove();
                     for (var i = 0; i < data.length; i++) {
                         $('#selectSubject').append($("<option></option>").attr("value", data[i]['id']).text(data[i]['name']));
                     }
