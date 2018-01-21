@@ -2,11 +2,22 @@
 
 @section('custom_styles')
     <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <style>
+        .special-class {
+            width: 100%;
+            margin: 0 auto;
+        }
 
+        @media screen and (min-width: 767px) {
+            .special-class {
+                width: 50%;
+            }
+        }
+    </style>
 @endsection
 
 @section('content')
-    <div class="row" style="width: 50%; margin: 0 auto;">
+    <div class="row special-class"">
     <div class="col-12 col-md-12">
         <div class="jumbotron">
 
@@ -31,10 +42,10 @@
 
                         <label for="solution">Solution:</label>
                         <div class="form-group">
-                            <textarea name ="body" cols="50" rows="6"></textarea>
+                            <textarea name ="body" style="width:100%;" rows="6"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Upload</button>
+                            <button type="submit" style="width: 100%;" class="btn btn-success">Upload</button>
                         </div>
                     </div>
 

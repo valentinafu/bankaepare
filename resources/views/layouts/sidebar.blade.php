@@ -16,15 +16,21 @@
                 @endforeach
             </ul>
         @elseif(Request::is('degrees/*') && isset($degrees))
-            <ul class="sidebar-menu" data-widget="tree">
+            <ul class="sidebar-menu" data-widget="tree" style="overflow-y: scroll; height: 100%;">
                 @foreach($degrees as $degree)
                     <li><a href="/degrees/{{ $degree->id }}"><span>{{ $degree->name }}</span></a></li>
                 @endforeach
             </ul>
         @elseif(Request::is('faculties/*') || isset($faculties))
-            <ul class="sidebar-menu" data-widget="tree" id="sidebarElements">
+            <ul class="sidebar-menu" data-widget="tree" id="sidebarElements" style="overflow-y: scroll; height: 100%;">
                 @foreach($faculties as $faculty)
                     <li><a href="/faculties/{{ $faculty->id }}"><span>{{ $faculty->name }}</span></a></li>
+                @endforeach
+            </ul>
+        @elseif(Request::is('solutions/*') || isset($subjects))
+            <ul class="sidebar-menu" data-widget="tree" id="sidebarElements" style="overflow-y: scroll; height: 100%;">
+                @foreach($subjects as $subject)
+                    <li><a href="/subjects/{{ $subject->id }}"><span>{{ $subject->name }}</span></a></li>
                 @endforeach
             </ul>
         @endif
