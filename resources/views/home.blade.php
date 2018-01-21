@@ -106,7 +106,15 @@
                         <select id="selectFaculty" class="form-control" name="faculty">
                             @if(isset($faculties) && $faculties->count())
                                 @foreach($faculties as $faculty)
-                                    <option value="{{ $faculty->id }}">{{ $faculty->name }}</option>
+                                    @if(isset($currentFaculty) && $faculty->id == $currentFaculty->id)
+                                        <option value="{{ $faculty->id }}" selected="selected">
+                                            {{  $faculty->name }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $faculty->id }}">
+                                            {{  $faculty->name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             @else
                                 <option value="1">Fakulteti i Shkencave të Natyrës</option>
@@ -117,8 +125,16 @@
                         <label for="degree">Degree</label>
                         <select id="selectDegree" class="form-control" name="degree">
                             @if(isset($degrees) && $degrees->count())
-                                @foreach($degrees as $degree) // vektori dhe variabli
-                                <option value="{{ $degree->id }}">{{ $degree->name }}</option>
+                                @foreach($degrees as $degree)
+                                    @if(isset($currentDegree) && $degree->id == $currentDegree->id)
+                                        <option value="{{ $degree->id }}" selected="selected">
+                                            {{  $degree->name }}
+                                        </option>
+                                    @else
+                                        <option value="{{ $degree->id }}">
+                                            {{  $degree->name }}
+                                        </option>
+                                    @endif
                                 @endforeach
                             @else
                                 <option value="1">Bachelor në Inxhinieri Matematike dhe Informatike</option>
@@ -130,7 +146,15 @@
                         <select id="selectSubject" class="form-control" name="subject">
                             @if(isset($subjects) && $subjects->count()) //cdo element i subjects eshte nje objekt (subject ->objekt)
                             @foreach($subjects as $subject)
-                                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                                @if(isset($currentSubject) && $subject->id == $currentSubject->id)
+                                    <option value="{{ $subject->id }}" selected="selected">
+                                        {{  $subject->name }}
+                                    </option>
+                                @else
+                                    <option value="{{ $subject->id }}">
+                                        {{  $subject->name }}
+                                    </option>
+                                @endif
                             @endforeach
                             @else
                                 <option value="1">Analizë Matematike 1</option>
@@ -153,8 +177,8 @@
 
     <?php //$msg = "asdfasdfasd as asd as get the fuck out"; ?>
     @if($msg = Session::get('msg')))
-        <div id="message" style="position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 10px; border-radius: 5px; padding: 20px; background-color: aqua; opacity: 0.8;">
-            {{ $msg }}
-        </div>
+    <div id="message" style="position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 10px; border-radius: 5px; padding: 20px; background-color: aqua; opacity: 0.8;">
+        {{ $msg }}
+    </div>
     @endif
 @endsection

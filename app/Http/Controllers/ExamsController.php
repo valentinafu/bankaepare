@@ -13,12 +13,17 @@ class ExamsController extends Controller
 {
     public function index(Subject $subject)
     {
-        $exams = $subject->exams;
-        $subjects = Subject::where('degree_id', '=', $subject->degree->id)->get();
-        $faculties = Faculty::all();
-        $degrees = Degree::all();
-        return view('home', compact('exams', 'subjects', 'subject', 'faculties', 'degrees')); //i vendos ne vektor te gjitha,tek faqja home i akseson te gjitha tek home blade
+        $exams = $subject->exams; // Te gjitha provimet e lendes
+        $subjects = Subject::where('degree_id', '=', $subject->degree->id)->get(); // Te gjitha lendet paralele me lenden e zgjedhur, qe i perkasin te njejtes dege
+        $degrees = $subject->degree->faculty->degrees; // Te gjitha deget e fakultetit ku jepet lenda
+        $faculties = Faculty::all(); // Te gjithe fakultetet qe duhen per te mbushur formen
 
+        $currentFaculty = $subject->degree->faculty;
+        $currentDegree = $subject->degree;
+        $currentSubject = $subject;
+
+        return view('home', compact('exams', 'subjects', 'currentSubject', 'currentDegree', 'currentFaculty', 'faculties', 'degrees')); //i vendos ne vektor te gjitha,tek faqja home i akseson te gjitha tek home blade
+        // Psh 'exams' i akseson si $exams, 'subjects' si $subjects e me radhe
     }
 
     public function show(Exam $exam)

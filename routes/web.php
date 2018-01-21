@@ -28,14 +28,17 @@ Route::get('/', function () {
 Route::get('/faculties/{faculty}', function (Faculty $faculty) {
     $degrees = $faculty->degrees;
     $faculties = Faculty::all();
-    return view('home', compact('degrees', 'faculty', 'faculties'));
+    $currentFaculty = $faculty;
+    return view('home', compact('degrees', 'currentFaculty', 'faculties'));
 });
 
 Route::get('/degrees/{degree}', function (Degree $degree) {
     $subjects = $degree->subjects;
     $degrees = $degree->faculty->degrees;
     $faculties = Faculty::all();
-    return view('home', compact('subjects', 'degree', 'degrees', 'faculties'));
+    $currentFaculty = $degree->faculty;
+    $currentDegree = $degree;
+    return view('home', compact('subjects', 'currentDegree', 'currentFaculty', 'degrees', 'faculties'));
 });
 
 Route::get('/subjects/{subject}', 'ExamsController@index');
