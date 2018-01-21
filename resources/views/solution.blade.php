@@ -21,20 +21,20 @@
                     <div class="row">
                         <input type="hidden" name="exam" value="{{ $exam->id }}">
                         <div class="form-group">
-                            <label for="title">Solution Title:</label>
+                            <label for="title">Ushtrimi:</label>
                             <input type="text" name="title" class="form-control">
                         </div>
                         <div class="form-group">
-                            <label for="image">Solution Image:</label>
+                            <label for="image">Zgjidhja (Imazh):</label>
                             <input type="file" name="image" class="form-control">
                         </div>
 
-                        <label for="solution">Solution:</label>
+                        <label for="solution">Zgjidhja (Tekst):</label>
                         <div class="form-group">
                             <textarea name ="body" cols="50" rows="6"></textarea>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-success">Upload</button>
+                            <button type="submit" class="btn btn-success">Ngarko</button>
                         </div>
                     </div>
 

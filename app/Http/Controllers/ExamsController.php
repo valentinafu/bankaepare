@@ -33,6 +33,11 @@ class ExamsController extends Controller
         $this->validate($request, [
             'subject' => 'required|integer',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:2048'
+        ], [
+            'subject.required' => 'Zgjidhni një lëndë',
+            'subject.integer' => 'Lënda duhet të jetë numër',
+            'image.required' => 'Duhet të ngarkoni një imazh ',
+
         ]);
 
         $exam = new Exam;

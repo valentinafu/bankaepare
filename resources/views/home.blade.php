@@ -85,7 +85,8 @@
         <!-- Only if a user is logged in, the upload form is shown -->
         @if (Auth::user())
             <div class="col-md-4">
-                <h3>Be a good student {{ Auth::user()->name }} and upload an exam here.</h3>
+                <h3>Bëhu një student i mirë {{ Auth::user()->name }} dhe ngarko një provim këtu.</h3>
+                {{--<h3>Be a good student {{ Auth::user()->name }} and upload an exam here.</h3>--}}
                 <hr>
 
                 <form action="{{ url('exams') }}" method="POST" enctype="multipart/form-data">
@@ -102,7 +103,7 @@
                     @endif
 
                     <div class="form-group">
-                        <label for="faculty">Faculty</label>
+                        <label for="faculty">Fakulteti</label>
                         <select id="selectFaculty" class="form-control" name="faculty">
                             @if(isset($faculties) && $faculties->count())
                                 @foreach($faculties as $faculty)
@@ -114,7 +115,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="degree">Degree</label>
+                        <label for="degree">Dega</label>
                         <select id="selectDegree" class="form-control" name="degree">
                             @if(isset($degrees) && $degrees->count())
                                 @foreach($degrees as $degree) // vektori dhe variabli
@@ -126,7 +127,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="subject">Subject</label>
+                        <label for="subject">Lënda</label>
                         <select id="selectSubject" class="form-control" name="subject">
                             @if(isset($subjects) && $subjects->count()) //cdo element i subjects eshte nje objekt (subject ->objekt)
                             @foreach($subjects as $subject)
@@ -138,11 +139,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label for="image">Exam Image:</label>
+                        <label for="image">Imazh</label>
                         <input type="file" name="image" class="form-control">
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">Upload</button>
+                        <button type="submit" class="btn btn-success">Ngarko</button>
                     </div>
 
                     @include ('layouts.errors')
