@@ -1,21 +1,21 @@
 <header class="main-header">
 
-    <a href="/" class="logo">
-        <span class="logo-mini">Logo</span>
-        <span>Banka e Parë</span>
+    <a href="/" class="logo" >
+        {{--<img src="/images/icon-small.png">--}}
+        <span style="cursor: pointer;">Banka e Parë</span>
     </a>
-
     <nav class="navbar">
 
+        <a href="/">
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
 
         <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
 
                 @if (Auth::user() && Auth::user()->role == 3)
-                    <li><a href="/admin"><span class="hidden-xs">Admin Panel</span></a></li>
+                    <li><a href="/admin"><span class="hidden-xs">Paneli i Administratorit</span></a></li>
                 @elseif (Auth::user() && Auth::user()->role == 2)
-                    <li><a href="/moderator"><span class="hidden-xs">Moderator Panel</span></a></li>
+                    <li><a href="/moderator"><span class="hidden-xs">Paneli i Moderatorit</span></a></li>
                 @endif
 
                 @if (Auth::guest())

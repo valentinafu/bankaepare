@@ -62,7 +62,7 @@ Route::get('/login', 'Auth\AuthController@redirectToProvider');
 Route::get('/login/callback', 'Auth\AuthController@handleProviderCallback');
 Route::post('/logout', 'Auth\AuthController@logout');
 
-Route::get('/users/deactivate/{user}', 'Auth\AuthController@deactivate');
+Route::get('/users/activate/{user}', 'Auth\AuthController@activate');
 
 Route::get('/admin', function () {
     if (Auth::user() && Auth::user()->role == 3) {
