@@ -6,7 +6,7 @@
     </a>
     <nav class="navbar">
 
-        <a href="/">
+        <a href="/"></a>
         <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button"></a>
 
         <div class="navbar-custom-menu">
@@ -19,7 +19,7 @@
                 @endif
 
                 @if (Auth::guest())
-                    <li><a href="/login"><span class="hidden-xs">Login</span></a></li>
+                    <li><a href="/login"><span class="hidden-xs">Hyr</span></a></li>
                 @else
                     <li class="dropdown user user-menu">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -35,7 +35,7 @@
                                 <div class="pull-right">
                                     <form id="logout-form" action="/logout" method="POST">
                                         {{ csrf_field() }}
-                                        <button type="submit" class="btn btn-default btn-flat">Log Out</button>
+                                        <button type="submit" class="btn btn-default btn-flat">Dil</button>
                                     </form>
                                 </div>
                             </li>

@@ -6,11 +6,18 @@ use App\Degree;
 use App\Exam;
 use App\Faculty;
 use App\Notification;
+use App\Solution;
 use App\Subject;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ExamsController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth')->except(['show', 'index']);
+    }
+
     public function index(Subject $subject)
     {
         $exams = $subject->exams; // Te gjitha provimet e lendes
@@ -41,8 +48,10 @@ class ExamsController extends Controller
         ], [
             'subject.required' => 'Zgjidhni një lëndë',
             'subject.integer' => 'Lënda duhet të jetë numër',
-            'image.required' => 'Duhet të ngarkoni një imazh ',
-
+            'image.required' => 'Duhet të ngarkoni një imazh',
+            'image.image' => 'Duhet të ngarkoni një imazh',
+            'image.mimes' => 'Imazhi duhet të jetë jpeg, png ose jpg',
+            'image.max' => 'Imazhi nuk duhet të jetë më i madh se 2 Mb',
         ]);
 
         $exam = new Exam;
@@ -59,20 +68,35 @@ class ExamsController extends Controller
         $notification->data = auth()->user()->name . " ngarkoi një provim në " . $exam->subject->name;
         $notification->redirect = "/exams/" . $exam->id;
         $notification->save();
-        return redirect("/subjects/{$exam->subject_id}")->with('success', 'Provimi u ngarkua me sukses.');
 
+        return redirect("/subjects/{$exam->subject_id}")->with('success', 'Provimi u ngarkua me sukses.');
     }
 
-    public function destroy(Exam $exam)
-    {
-        Exam::find($exam->id)->delete();
+    public function destroy(Exam $exam) {
+        // Nese eshte provim qe ka ngarkuar perdoruesi vete, ose nese nuk eshte perdorues i thjeshte
+        if (Auth::user()->id == $exam->user->id || Auth::user()->role != 1) {
 
-        if (file_exists(public_path() . '/images/exams/' . $exam->id . '.jpg')) {
-            unlink(public_path() . '/images/exams/' . $exam->id . '.jpg');
-        } else {
-            return redirect("/subjects/" . $exam->subject->id)->with('error', 'Provimi nuk ekziston.');
+            $solutions = $exam->solutions;
+            Exam::find($exam->id)->delete();
+
+            if (file_exists(public_path() . '/images/exams/' . $exam->id . '.jpg')) {
+                unlink(public_path() . '/images/exams/' . $exam->id . '.jpg');
+            } else {
+                return redirect("/subjects/" . $exam->subject->id)->with('error', 'Provimi nuk ekziston.');
+            }
+
+            // Delete the solutions of the exam too
+            foreach ($solutions as $solution) {
+                Solution::find($solution->id)->delete();
+
+                if (file_exists(public_path() . '/images/solutions/' . $solution->id . '.jpg')) {
+                    unlink(public_path() . '/images/solutions/' . $solution->id . '.jpg');
+                }
+            }
+
+            return redirect("/subjects/" . $exam->subject->id)->with('success', 'Provimi u fshi me sukses.');
         }
 
-        return redirect("/subjects/" . $exam->subject->id)->with('success', 'Provimi u fshi me sukses.');
+        return redirect()->home()->with(['msg' => 'Ju nuk keni të drejtë të fshini këtë provim.']);
     }
 }

@@ -7,15 +7,16 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <script>
     $(function() {
-        $( "#accordion" ).accordion(
-            {
-                event: "click",
-                active: false,
-                collapsible: true,
-                autoHeight: false
+        $( "#accordion" ).accordion({
+            event: "click",
+            active: false,
+            collapsible: true,
+            heightStyle: "content"
+        });
 
-            }
-        );
+        $("#accordion h3 span").click(function (event) {
+            event.stopPropagation();
+        });
     });
 </script>
 

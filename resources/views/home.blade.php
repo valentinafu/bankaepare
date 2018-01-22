@@ -27,7 +27,7 @@
                     @endforeach
                 </div>
             @elseif(!isset($exams))
-                @if(isset($subjects))
+                @if(isset($subjects) && isset($showSubjects))
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -44,7 +44,7 @@
                             </tbody>
                         </table>
                     </div>
-                @elseif(isset($degrees) && $degrees->count())
+                @elseif(isset($degrees) && isset($showDegrees))
                     <div class="box-body">
                         <table id="example1" class="table table-bordered table-striped">
                             <thead>
@@ -61,7 +61,7 @@
                             </tbody>
                         </table>
                     </div>
-                @elseif(isset($faculties))
+                @elseif(isset($faculties) && isset($showFaculties))
                     <div class="row">
                         @foreach($faculties as $faculty)
                             @if (Auth::user())
@@ -176,7 +176,6 @@
         @endif
     </div>
 
-    <?php //$msg = "asdfasdfasd as asd as get the fuck out"; ?>
     @if($msg = Session::get('msg')))
     <div id="message" style="position: fixed; bottom: 0; right: 0; margin-bottom: 20px; margin-right: 10px; border-radius: 5px; padding: 20px; background-color: aqua; opacity: 0.8;">
         {{ $msg }}

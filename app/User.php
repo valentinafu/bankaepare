@@ -30,6 +30,7 @@ class User extends Authenticatable
     public function degree() {
         return $this->belongsTo(Degree::class);
     }
+
     public function notifications() {
         return $this->hasMany(Notification::class, 'receiver_id');
     }
