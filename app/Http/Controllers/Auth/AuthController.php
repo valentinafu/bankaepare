@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Notification;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Laravel\Socialite\Facades\Socialite;
 use Exception;
@@ -38,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except(['logout', 'deactivate']);
     }
 
     public function redirectToProvider() {
@@ -63,26 +64,27 @@ class AuthController extends Controller
     }
 
     protected function sendSuccessResponse() {
-        return redirect()->home();
+        return redirect()->home()->with('msg', 'Mirësevini');
     }
 
     protected function sendFailedResponse($msg = null) {
-        return redirect()->route('login')
-            ->withErrors(['msg' => $msg ?: 'Unable to login, try with another provider to login.']);
+        return redirect('/')->with('msg' , $msg ? $msg : 'Nuk mund të futeni me këtë email.');
     }
 
     protected function loginOrCreateAccount($providerUser) {
-        // check for already has account
+        // check if user already has an account
         $user = User::where('email', $providerUser->getEmail())->first();
 
-        // if user already found
-        if( $user ) {
+        // if user already found and is not deactivated
+        if($user && $user->active == 1) {
             // update the avatar and provider that might have changed
             $user->update([
                 'avatar' => $providerUser->getAvatar(),
                 'google_id' => $providerUser->id,
                 'access_token' => $providerUser->token
             ]);
+        } elseif($user && $user->active == 0) {
+            return $this->sendFailedResponse("Kjo llogari është ç'aktivizuar");
         } else {
             // create a new user
             $user = User::create([
@@ -92,6 +94,16 @@ class AuthController extends Controller
                 'google_id' => $providerUser->getId(),
                 'access_token' => $providerUser->token
             ]);
+
+/*
+            $notification = new Notification;
+            $moderator = $user->role = 2;
+            $notification->receiver_id = $moderator -> id;
+            $notification->data = auth()->user()-> name. " sapo u regjistrua në faqe." ;
+            $notification->redirect = "/";
+            $notification->save();
+*/
+            return redirect("/")->with('success', 'Regjistrimi u krye me sukses.');
         }
 
         // login the user

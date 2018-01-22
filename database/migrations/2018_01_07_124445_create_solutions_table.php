@@ -16,7 +16,8 @@ class CreateSolutionsTable extends Migration
         Schema::create('solutions', function (Blueprint $table) {
             $table->increments('id'); //imazhi
             $table->integer('exam_id');
-            $table->string('title');
+            $table->integer('user_id');
+            $table->string('title')->default('');
             $table->text('body');
             $table->timestamps();
         });

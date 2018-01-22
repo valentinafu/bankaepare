@@ -19,7 +19,7 @@ class CreateNotificationsTable extends Migration
             $table->integer('receiver_id');
             $table->text('data');
             $table->string('redirect')->nullable();
-            $table->timestamp('read_at')->nullable();
+            $table->boolean('read')->default(0);
             $table->timestamps();
         });
     }

@@ -46,8 +46,14 @@ class DatabaseSeeder extends Seeder
         ]);
 
         DB::table('moderator_degrees')->insert([
-            'moderator_id' => '2',
-            'degree_id' => '1'
+            [
+                'moderator_id' => '2',
+                'degree_id' => '1'
+            ],
+            [
+                'moderator_id' => '2',
+                'degree_id' => '5'
+            ]
         ]);
     }
 }
