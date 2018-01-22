@@ -33,6 +33,7 @@
                         <tr>
                             <th>Njoftimi</th>
                             <th>Data</th>
+                            <th>Lexuar</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -40,6 +41,7 @@
                             <tr>
                                 <td><a href="{{ $notification->redirect }}">{{$notification->data}}</a></td>
                                 <td>{{$notification->created_at}}</td>
+                                <td style="text-align: center"><a href="/moderator/deleteNotification/{{ $notification->id }}" class="btn btn-success"><i class="fa fa-check"></i></a></td></td>
                             </tr>
                         @endforeach
                         </tbody>

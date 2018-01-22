@@ -148,6 +148,18 @@ Route::get('/moderator/exams', function () {
     return redirect()->home();
 });
 
+Route::get('/moderator/deleteNotification/{notification}', function (Notification $notification) {
+    if (Auth::user() && Auth::user()->role == 2) {
+        Notification::find($notification->id)->delete();
+
+        $notifications = Auth::user()->notifications;
+        $faculties = Faculty::all();
+        return redirect('moderator')->with(compact(['notifications', 'faculties']));
+    }
+
+    return redirect()->home();
+});
+
 Route::get('/ajax_degrees/{faculty}', function (Faculty $faculty) {
     return $faculty->degrees;
 });
